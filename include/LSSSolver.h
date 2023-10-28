@@ -8,7 +8,7 @@
 
 class LSSSolver{
 public:
-    virtual std::tuple<double, double> solve();
+    virtual std::tuple<double, double> solve() = 0;
 };
 
 #endif //HOMEWORK1_LSSSOLVER_H

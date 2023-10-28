@@ -10,6 +10,7 @@ project(
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Recursively search source files in src folder
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
 add_executable(Homework1 main.cpp ${SRC_FILES})
 
