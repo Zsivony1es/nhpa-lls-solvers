@@ -25,12 +25,15 @@ LIBS = -I/opt/homebrew/opt/openblas/include -L/opt/homebrew/opt/openblas/lib -lo
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJS)
-	$(CC) $(CFLAGS) main.cpp $(OBJS) $(LIBS) -o $@
+	$(CC) $(CFLAGS) main.cpp $(OBJS) $(LIBS) -o apps/$@
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 clean:
-	rm -rf $(BUILD_DIR)/*.o $(EXECUTABLE)
+	rm -rf $(BUILD_DIR)/*.o $(EXECUTABLE) apps/*
+
+run:
+	./apps/$(EXECUTABLE)
 
 .PHONY: all clean
