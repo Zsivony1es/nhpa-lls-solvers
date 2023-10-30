@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.26)
 
-
 project(
         Homework1
         VERSION 0.1
@@ -12,7 +11,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Recursively search source files in src folder
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
+
+# Add LAPACK and BLAS include directories
+include_directories(/opt/homebrew/opt/openblas/include)
+# include_directories(/opt/homebrew/opt/lapack/include)
+
 add_executable(Homework1 main.cpp ${SRC_FILES})
 
-target_include_directories(Homework1 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(Homework1
+        PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
+target_link_libraries(Homework1 /opt/homebrew/opt/openblas/lib/libopenblas.a)
+# target_link_libraries(Homework1 /opt/homebrew/opt/lapack/lib/???)
