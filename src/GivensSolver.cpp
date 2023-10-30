@@ -4,5 +4,5 @@
 #include "GivensSolver.h"
 
 std::tuple<double, double> GivensSolver::solve() {
-    return std::tuple(0.1, 0.2);
+    return std::tuple<double, double>(0.1, 0.2);
 }
