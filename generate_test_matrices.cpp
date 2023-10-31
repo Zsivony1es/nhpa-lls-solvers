@@ -21,11 +21,14 @@ int main(){
     }
     for (size_t n = 100; n <= 2900; n += 100){
         matrices_to_generate.push_back(make_tuple(n, 3000));
+        if (n >= 1000){
+            n += 400;
+        }
     }
 
     for (auto &dim : matrices_to_generate){
         stringstream ss;
-        ss << "res/matrix" << get<0>(dim) << "x" << get<1>(dim) << ".txt";
+        ss << "res/matrix_" << get<0>(dim) << "x" << get<1>(dim) << ".txt";
 
         Matrix* matrix = new Matrix(get<0>(dim), get<1>(dim));
         cout << "Generating file: " << ss.str() << std::endl;

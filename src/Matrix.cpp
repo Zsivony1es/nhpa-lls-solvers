@@ -4,18 +4,16 @@
 
 #include "Matrix.h"
 
-#include <random>
+std::default_random_engine Matrix::generator = std::default_random_engine(1234);
 
 Matrix::Matrix(size_t col_count, size_t row_count) : col_count(col_count), row_count(row_count) {
 
     this->entries = new double[col_count * row_count];
 
-    std::random_device rd;
-    std::default_random_engine generator(rd());
     std::uniform_real_distribution<double> distribution(-1, 1);
 
     for (size_t i = 0; i < col_count * row_count; ++i){
-        this->entries[i] = distribution(generator);
+        this->entries[i] = distribution(this->generator);
     }
 }
 
