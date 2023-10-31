@@ -13,14 +13,14 @@
 
 class Matrix {
 private:
-    size_t col_count, row_count;
-    double* entries;
     static std::default_random_engine generator;
 public:
+    size_t col_count, row_count;
+    double* entries;
+
     Matrix(size_t col_count, size_t row_count);
     Matrix(std::string src_file_path);
     ~Matrix();
-    double* get_entries() const;
     std::string to_string() const;
 };
 

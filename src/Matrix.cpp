@@ -59,10 +59,6 @@ Matrix::~Matrix() {
     delete[] this->entries;
 }
 
-double* Matrix::get_entries() const{
-    return this->entries;
-}
-
 std::string Matrix::to_string() const {
     std::stringstream ss;
     ss << "(" << this->row_count << "x" << this->col_count << ")\n";
