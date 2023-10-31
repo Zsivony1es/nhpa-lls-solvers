@@ -6,6 +6,7 @@
 #define HOMEWORK1_CGSCOLUMNORTHOGONALIZER_H
 
 #include <iostream>
+#include <cblas.h>
 
 #include "ColumnOrthogonalizer.h"
 

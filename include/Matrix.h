@@ -10,6 +10,9 @@
 #include <fstream>
 #include <iostream>
 #include <random>
+#include <cmath>
+#include <cblas.h>
+
 
 class Matrix {
 private:
@@ -21,6 +24,7 @@ public:
     Matrix(size_t col_count, size_t row_count);
     Matrix(std::string src_file_path);
     ~Matrix();
+    double evaluate_orthogonality() const;
     std::string to_string() const;
 };
 

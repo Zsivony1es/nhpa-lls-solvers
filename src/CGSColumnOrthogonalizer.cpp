@@ -3,9 +3,9 @@
 //
 
 #include "CGSColumnOrthogonalizer.h"
-#include <cblas.h>
 
 void CGSColumnOrthogonalizer::orthogonalize(Matrix* A){
+
     size_t col_count = A->col_count;
     size_t row_count = A->row_count;
     double* entries = A->entries;

@@ -59,6 +59,37 @@ Matrix::~Matrix() {
     delete[] this->entries;
 }
 
+double Matrix::evaluate_orthogonality() const {
+
+    size_t N = this->col_count;
+
+    double* QTQ = new double[N * N];
+    // Documentation for the method
+    // https://icl.bitbucket.io/blaspp/group__gemm.html#details
+    cblas_dgemm(CblasRowMajor, CblasTrans, CblasNoTrans, N, N, N, 1.0, this->entries, N, this->entries, N, 0.0, QTQ, N);
+
+    // Subtract the identity
+    for (size_t i = 0; i < N * N; i += N + 1) {
+        QTQ[i]--;
+    }
+
+    // Get max column sums (1-norm)
+    double max_sum = 0.0;
+    for (size_t i = 0; i < N; i++){
+        double current_col_sum = 0.0;
+        for (size_t j = 0; i < N; j++) {
+            current_col_sum += std::abs(QTQ[j * N + i]);
+        }
+        if (current_col_sum >= max_sum){
+            max_sum = current_col_sum;
+        }
+    }
+
+    delete[] QTQ;
+
+    return max_sum;
+}
+
 std::string Matrix::to_string() const {
     std::stringstream ss;
     ss << "(" << this->row_count << "x" << this->col_count << ")\n";

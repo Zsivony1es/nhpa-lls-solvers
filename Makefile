@@ -29,7 +29,7 @@ $(EXECUTABLE): $(OBJS)
 	$(CC) $(CFLAGS) generate_test_matrices.cpp $(OBJS) $(LIBS) -o apps/generate_test_matrices
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+	$(CC) $(CFLAGS) $(LIBS) $(INCS) -c $< -o $@
 
 clean:
 	rm -rf $(BUILD_DIR)/*.o $(EXECUTABLE) apps/*
