@@ -3,12 +3,33 @@
 //
 
 #include "include/FileHandler.h"
+#include "include/Matrix.h"
+
+#include <vector>
+#include <sstream>
+
+using namespace std;
 
 int main(){
 
-    std::string& my_str = "hello";
-    std::string& matrix_path = "res/out.txt";
+    vector<tuple<size_t, size_t>> matrices_to_generate{};
+    for (size_t m = 100; m <= 5000; m += 100){
+        matrices_to_generate.push_back(make_tuple(100, m));
+        if (m >= 1000) {
+            m += 900;
+        }
+    }
+    for (size_t n = 100; n <= 2900; n += 100){
+        matrices_to_generate.push_back(make_tuple(n, 3000));
+    }
 
-    FileHandler::writeFile(matrix_path, my_str);
+    for (auto &dim : matrices_to_generate){
+        stringstream ss;
+        ss << "res/matrix" << get<0>(dim) << "x" << get<1>(dim) << ".txt";
+
+        Matrix* matrix = new Matrix(get<0>(dim), get<1>(dim));
+        cout << "Generating file: " << ss.str() << std::endl;
+        FileHandler::writeFile(ss.str(), matrix->to_string());
+    }
 
 }

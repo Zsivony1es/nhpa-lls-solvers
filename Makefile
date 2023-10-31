@@ -26,6 +26,7 @@ all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJS)
 	$(CC) $(CFLAGS) main.cpp $(OBJS) $(LIBS) -o apps/$@
+	$(CC) $(CFLAGS) generate_test_matrices.cpp $(OBJS) $(LIBS) -o apps/generate_test_matrices
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
@@ -35,5 +36,10 @@ clean:
 
 run:
 	./apps/$(EXECUTABLE)
+
+matrix_gen:
+	rm -rf res/*
+	make all
+	./apps/generate_test_matrices
 
 .PHONY: all clean
