@@ -7,6 +7,8 @@
 
 #include <string>
 #include <sstream>
+#include <fstream>
+#include <iostream>
 #include <random>
 
 class Matrix {
@@ -16,6 +18,7 @@ private:
     static std::default_random_engine generator;
 public:
     Matrix(size_t col_count, size_t row_count);
+    Matrix(std::string src_file_path);
     ~Matrix();
     double* get_entries() const;
     std::string to_string() const;

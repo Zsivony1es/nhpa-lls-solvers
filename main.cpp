@@ -10,7 +10,8 @@ int main() {
     double x[] = {5.0, 6.0};          // 2-dimensional vector
 
     size_t col = 10, row = 10;
-    Matrix* my_matrix = new Matrix(col, row);
+
+    Matrix* my_matrix = new Matrix("./res/matrix_100x100.txt");
 
     std::cout << my_matrix->to_string() << std::endl;
 
