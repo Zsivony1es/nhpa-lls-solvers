@@ -16,14 +16,14 @@ int main() {
     CGSColumnOrthogonalizer* cgs = new CGSColumnOrthogonalizer();
     cgs->orthogonalize(my_matrix);
 
-    std::cout << "Matrix 1 was orthogonalized, result:" << std::endl;
-    std::cout << my_matrix->to_string() << std::endl;
+    std::cout << "Matrix 1 was orthogonalized" << std::endl;
 
     MGSColumnOrthogonalizer* mgs = new MGSColumnOrthogonalizer();
     mgs->orthogonalize(my_matrix2);
 
-    std::cout << "Matrix 2 was orthogonalized, result:" << std::endl;
-    std::cout << my_matrix2->to_string() << std::endl;
+    std::cout << "Matrix 2 was orthogonalized" << std::endl;
+
+    std::cout << "Evaluating orthogonality metrics..." << std::endl;
 
     double orth1 = my_matrix->evaluate_orthogonality();
     double orth2 = my_matrix2->evaluate_orthogonality();
