@@ -4,20 +4,32 @@
 #include "include/FileHandler.h"
 #include "include/Matrix.h"
 #include "include/CGSColumnOrthogonalizer.h"
+#include "include/MGSColumnOrthogonalizer.h"
 
 int main() {
 
-    Matrix* my_matrix = new Matrix("./res/matrix_100x400.txt");
+    std::cout << "Reading in and constructing matrices..." << std::endl;
 
-    CGSColumnOrthogonalizer* orthognalizer = new CGSColumnOrthogonalizer();
-    orthognalizer->orthogonalize(my_matrix);
+    Matrix* my_matrix = new Matrix("./res/matrix_2500x3000.txt");
+    Matrix* my_matrix2 = new Matrix("./res/matrix_2500x3000.txt");
 
-    std::cout << "Matrix was orthogonalized, result:" << std::endl;
+    CGSColumnOrthogonalizer* cgs = new CGSColumnOrthogonalizer();
+    cgs->orthogonalize(my_matrix);
+
+    std::cout << "Matrix 1 was orthogonalized, result:" << std::endl;
     std::cout << my_matrix->to_string() << std::endl;
 
-    double orthogonality = my_matrix->evaluate_orthogonality();
+    MGSColumnOrthogonalizer* mgs = new MGSColumnOrthogonalizer();
+    mgs->orthogonalize(my_matrix2);
 
-    std::cout << "||Q^TQ - I||_1 = " << orthogonality << std::endl;
+    std::cout << "Matrix 2 was orthogonalized, result:" << std::endl;
+    std::cout << my_matrix2->to_string() << std::endl;
+
+    double orth1 = my_matrix->evaluate_orthogonality();
+    double orth2 = my_matrix2->evaluate_orthogonality();
+
+    std::cout << "1: ||Q^TQ - I||_1 = " << orth1 << std::endl;
+    std::cout << "2: ||Q^TQ - I||_1 = " << orth2 << std::endl;
 
     return 0;
 }
