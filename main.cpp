@@ -7,7 +7,7 @@
 
 int main() {
 
-    Matrix* my_matrix = new Matrix("./res/matrix_100x100.txt");
+    Matrix* my_matrix = new Matrix("./res/matrix_100x400.txt");
 
     CGSColumnOrthogonalizer* orthognalizer = new CGSColumnOrthogonalizer();
     orthognalizer->orthogonalize(my_matrix);
@@ -15,7 +15,9 @@ int main() {
     std::cout << "Matrix was orthogonalized, result:" << std::endl;
     std::cout << my_matrix->to_string() << std::endl;
 
-    std::cout << "||Q^TQ - I||_1 = " << my_matrix->evaluate_orthogonality() << std::endl;
+    double orthogonality = my_matrix->evaluate_orthogonality();
+
+    std::cout << "||Q^TQ - I||_1 = " << orthogonality << std::endl;
 
     return 0;
 }
