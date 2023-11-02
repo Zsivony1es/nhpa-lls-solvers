@@ -6,7 +6,7 @@
 
 std::default_random_engine Matrix::generator = std::default_random_engine(1234);
 
-Matrix::Matrix(size_t col_count, size_t row_count) : col_count(col_count), row_count(row_count) {
+Matrix::Matrix(size_t row_count, size_t col_count) : row_count(row_count), col_count(col_count) {
 
     this->entries = new double[col_count * row_count];
 
@@ -16,6 +16,8 @@ Matrix::Matrix(size_t col_count, size_t row_count) : col_count(col_count), row_c
         this->entries[i] = distribution(this->generator);
     }
 }
+
+Matrix::Matrix(size_t row_count, size_t col_count, double* entries) : row_count(row_count), col_count(col_count), entries(entries){}
 
 // Reads in a matrix from a file, which contains the exact output of the to_string method
 Matrix::Matrix(std::string src_file_path){
@@ -57,6 +59,11 @@ Matrix::Matrix(std::string src_file_path){
 
 Matrix::~Matrix() {
     delete[] this->entries;
+}
+
+void Matrix::set_entries(double* new_entries){
+    delete[] this->entries;
+    this->entries = new_entries;
 }
 
 double Matrix::evaluate_orthogonality() const {

@@ -10,7 +10,8 @@
 #include "QRFactorizer.h"
 
 class GivensFactorizer: QRFactorizer{
-    std::tuple<double*, double*> factorize(double* A);
+public:
+    void factorize(Matrix* AtoR);
 };
 
 #endif //HOMEWORK1_GIVENSFACTORIZER_H

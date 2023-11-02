@@ -5,10 +5,11 @@
 #define HOMEWORK1_QRFACTORIZER_H
 
 #include <iostream>
+#include "Matrix.h"
 
 class QRFactorizer{
 public:
-    virtual std::tuple<double*, double*> factorize(double* A) = 0;
+    virtual void factorize(Matrix* AtoR) = 0;
 };
 
 #endif //HOMEWORK1_QRFACTORIZER_H
