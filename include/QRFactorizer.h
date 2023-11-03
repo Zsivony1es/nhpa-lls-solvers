@@ -9,7 +9,7 @@
 
 class QRFactorizer{
 public:
-    virtual void factorize(Matrix* AtoR) = 0;
+    virtual Matrix* factorize(Matrix* AtoR) = 0;
 };
 
 #endif //HOMEWORK1_QRFACTORIZER_H

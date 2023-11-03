@@ -11,7 +11,7 @@
 
 class HouseholderFactorizer: QRFactorizer{
 public:
-    void factorize(Matrix* AtoR);
+    Matrix* factorize(Matrix* AtoR);
 };
 
 #endif //HOMEWORK1_HOUSEHOLDERFACTORIZER_H

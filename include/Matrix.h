@@ -21,6 +21,8 @@ public:
     size_t row_count, col_count;
     double* entries;
 
+    Matrix();
+    Matrix(size_t rowcol_count);
     Matrix(size_t row_count, size_t col_count);
     Matrix(size_t row_count, size_t col_count, double* entries);
     Matrix(std::string src_file_path);
@@ -28,6 +30,7 @@ public:
 
     void set_entries(double* new_entries);
     double evaluate_orthogonality() const;
+    void initialize_identity(size_t N);
     std::string to_string() const;
 };
 

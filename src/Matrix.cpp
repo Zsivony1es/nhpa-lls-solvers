@@ -6,6 +6,22 @@
 
 std::default_random_engine Matrix::generator = std::default_random_engine(1234);
 
+Matrix::Matrix(){
+    this->row_count = 0;
+    this->col_count = 0;
+    this->entries = nullptr;
+}
+
+Matrix::Matrix(size_t rowcol_count) : row_count(rowcol_count), col_count(rowcol_count) {
+    this->entries = new double[rowcol_count * rowcol_count];
+
+    std::uniform_real_distribution<double> distribution(-1, 1);
+
+    for (size_t i = 0; i < rowcol_count * rowcol_count; ++i){
+        this->entries[i] = distribution(this->generator);
+    }
+}
+
 Matrix::Matrix(size_t row_count, size_t col_count) : row_count(row_count), col_count(col_count) {
 
     this->entries = new double[col_count * row_count];
@@ -61,6 +77,20 @@ Matrix::~Matrix() {
     delete[] this->entries;
 }
 
+void Matrix::initialize_identity(size_t N){
+    delete[] this->entries;
+    this->entries = new double[ N * N ];
+    for (size_t i = 0; i < N*N; ++i){
+        this->entries[i] = 0;
+    }
+    for (size_t i = 0; i < N; ++i){
+        this->entries[i * N + i] = 1;
+    }
+
+    this->row_count = N;
+    this->col_count = N;
+}
+
 void Matrix::set_entries(double* new_entries){
     delete[] this->entries;
     this->entries = new_entries;
@@ -75,8 +105,6 @@ double Matrix::evaluate_orthogonality() const {
     // https://icl.bitbucket.io/blaspp/group__gemm.html#details
     cblas_dgemm(CblasRowMajor, CblasTrans, CblasNoTrans, N, N, N, 1.0, this->entries, N, this->entries, N, 0.0, QTQ, N);
 
-    std::cout << QTQ[1] << std::endl;
-
     // Subtract the identity
     for (size_t i = 0; i < N * N; i += N + 1) {
         QTQ[i]--;
@@ -86,6 +114,7 @@ double Matrix::evaluate_orthogonality() const {
     double max_sum = 0.0;
     for (size_t i = 0; i < N; i++){
         double current_col_sum = 0.0;
+
         for (size_t j = 0; j < N; j++) {
             current_col_sum += std::abs(QTQ[j * N + i]);
         }

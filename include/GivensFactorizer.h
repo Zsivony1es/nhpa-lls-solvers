@@ -11,7 +11,7 @@
 
 class GivensFactorizer: QRFactorizer{
 public:
-    void factorize(Matrix* AtoR);
+    Matrix* factorize(Matrix* AtoR);
 };
 
 #endif //HOMEWORK1_GIVENSFACTORIZER_H
