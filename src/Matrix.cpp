@@ -4,7 +4,7 @@
 
 #include "../include/Matrix.h"
 
-std::default_random_engine Matrix::generator = std::default_random_engine(1234);
+std::default_random_engine Matrix::generator = std::default_random_engine(65757);
 
 Matrix::Matrix(){
     this->row_count = 0;

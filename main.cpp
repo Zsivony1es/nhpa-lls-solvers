@@ -71,8 +71,8 @@ int main() {
         double orth2 = Q2->evaluate_orthogonality();
         mgs_orth.push_back(orth2);
 
-        std::cout << "1: ||Q^TQ - I||_1 = " << orth1 << std::endl;
-        std::cout << "2: ||Q^TQ - I||_1 = " << orth2 << std::endl;
+        std::cout << "CGS: ||Q^TQ - I||_1 = " << orth1 << "\tRuntime:" << cgs_runtimes.back() << "s" << std::endl;
+        std::cout << "MGS: ||Q^TQ - I||_1 = " << orth2 << "\tRuntime:" << mgs_runtimes.back() << "s" << std::endl;
     }
 
     // Write files for plots
