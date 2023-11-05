@@ -3,8 +3,8 @@
 
 #include "include/FileHandler.h"
 #include "include/Matrix.h"
-#include "include/CGSColumnOrthogonalizer.h"
-#include "include/MGSColumnOrthogonalizer.h"
+#include "include/CGSFactorizer.h"
+#include "include/MGSFactorizer.h"
 
 int main() {
 

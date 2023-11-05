@@ -1,15 +1,16 @@
 //
-// Created by Peter Ivony on 27.10.23.
+// Created by Peter Ivony on 31.10.23.
 //
+
 #ifndef HOMEWORK1_QRFACTORIZER_H
 #define HOMEWORK1_QRFACTORIZER_H
 
-#include <iostream>
 #include "Matrix.h"
 
-class QRFactorizer{
+class QRFactorizer {
 public:
-    virtual Matrix* factorize(Matrix* AtoR) = 0;
+    // Transforms A to R and returns pointer to Q
+    virtual Matrix* factorize(Matrix* A) = 0;
 };
 
 #endif //HOMEWORK1_QRFACTORIZER_H
