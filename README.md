@@ -2,7 +2,7 @@
 
 ---
 
-### Installation notes
+### Compilation/execution instructions
 To build the executables I use Makefile, with the following commands set up:
 + make test - build test executables and execute tests
 + make all - compile all source files and create executables

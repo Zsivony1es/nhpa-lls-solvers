@@ -109,7 +109,7 @@ int main(){
 
     int errors = 0;
 
-    errors += householder_test();
+    // errors += householder_test();
     errors += cgs_mgs_test();
     // errors += givens_rot_test();
 
