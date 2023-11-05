@@ -12,7 +12,7 @@
 
 int main() {
 
-    std::chrono::steady_clock::time_point begin, end;
+    std::chrono::steady_clock::time_point begin1, end1, begin2, end2;
 
     // Get the matrix sizes
     std::vector<std::tuple<size_t, size_t>> matrices_to_factorize{};
@@ -43,11 +43,11 @@ int main() {
 
         CGSFactorizer* cgs = new CGSFactorizer();
 
-        begin = std::chrono::steady_clock::now();
+        begin1 = std::chrono::steady_clock::now();
         Matrix* Q1 = cgs->factorize(my_matrix);
-        end = std::chrono::steady_clock::now();
+        end1 = std::chrono::steady_clock::now();
         
-        cgs_runtimes.push_back(std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() / 1000.0);
+        cgs_runtimes.push_back(std::chrono::duration_cast<std::chrono::microseconds>(end1 - begin1).count() / 100000.0);
 
         /*
             // Printing QTQ for a certain dimension
@@ -61,18 +61,18 @@ int main() {
 
         MGSFactorizer* mgs = new MGSFactorizer();
 
-        begin = std::chrono::steady_clock::now();
+        begin2 = std::chrono::steady_clock::now();
         Matrix* Q2 = mgs->factorize(my_matrix2);
-        end = std::chrono::steady_clock::now();
-        mgs_runtimes.push_back(std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() / 1000.0);
+        end2 = std::chrono::steady_clock::now();
+        mgs_runtimes.push_back(std::chrono::duration_cast<std::chrono::microseconds>(end2 - begin2).count() / 100000.0);
 
         double orth1 = Q1->evaluate_orthogonality();
         cgs_orth.push_back(orth1);
         double orth2 = Q2->evaluate_orthogonality();
         mgs_orth.push_back(orth2);
 
-        std::cout << "CGS: ||Q^TQ - I||_1 = " << orth1 << "\tRuntime:" << cgs_runtimes.back() << "s" << std::endl;
-        std::cout << "MGS: ||Q^TQ - I||_1 = " << orth2 << "\tRuntime:" << mgs_runtimes.back() << "s" << std::endl;
+        std::cout << "CGS: ||Q^TQ - I||_1 = " << orth1 << "\tRuntime: " << cgs_runtimes.back() << "s" << std::endl;
+        std::cout << "MGS: ||Q^TQ - I||_1 = " << orth2 << "\tRuntime: " << mgs_runtimes.back() << "s" << std::endl;
     }
 
     // Write files for plots
