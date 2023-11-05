@@ -3,6 +3,7 @@
 #include <sstream>
 #include <vector>
 #include <tuple>
+#include <chrono>
 
 #include "include/FileHandler.h"
 #include "include/Matrix.h"
@@ -10,6 +11,8 @@
 #include "include/MGSFactorizer.h"
 
 int main() {
+
+    std::chrono::steady_clock::time_point begin, end;
 
     // Get the matrix sizes
     std::vector<std::tuple<size_t, size_t>> matrices_to_factorize{};
@@ -29,6 +32,7 @@ int main() {
     }
 
     std::vector<double> cgs_orth, mgs_orth;
+    std::vector<double> cgs_runtimes, mgs_runtimes;
 
     for (auto& dim : matrices_to_factorize){
         std::cout << "Reading in and constructing [" << get<0>(dim) << "x" << get<1>(dim) << "] matrices..." << std::endl;
@@ -38,7 +42,12 @@ int main() {
         Matrix* my_matrix2 = new Matrix(sstream.str());
 
         CGSFactorizer* cgs = new CGSFactorizer();
+
+        begin = std::chrono::steady_clock::now();
         Matrix* Q1 = cgs->factorize(my_matrix);
+        end = std::chrono::steady_clock::now();
+        
+        cgs_runtimes.push_back(std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() / 1000.0);
 
         /*
             // Printing QTQ for a certain dimension
@@ -51,7 +60,11 @@ int main() {
         */
 
         MGSFactorizer* mgs = new MGSFactorizer();
+
+        begin = std::chrono::steady_clock::now();
         Matrix* Q2 = mgs->factorize(my_matrix2);
+        end = std::chrono::steady_clock::now();
+        mgs_runtimes.push_back(std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() / 1000.0);
 
         double orth1 = Q1->evaluate_orthogonality();
         cgs_orth.push_back(orth1);
@@ -83,9 +96,23 @@ int main() {
             out_str << ", ";
         }
     }
+    out_str << "\nCGS-runtime: ";
+    for (int i = 0; i < count_of_m_is_100; ++i){
+        out_str << cgs_runtimes[i];
+        if (i + 1 != count_of_m_is_100){
+            out_str << ", ";
+        }
+    }
     out_str << "\nMGS-orthogonality: ";
     for (int i = 0; i < count_of_m_is_100; ++i){
         out_str << mgs_orth[i];
+        if (i + 1 != count_of_m_is_100){
+            out_str << ", ";
+        }
+    }
+    out_str << "\nMGS-runtime: ";
+    for (int i = 0; i < count_of_m_is_100; ++i){
+        out_str << mgs_runtimes[i];
         if (i + 1 != count_of_m_is_100){
             out_str << ", ";
         }
@@ -109,9 +136,16 @@ int main() {
             out_str << ", ";
         }
     }
-    out_str << "\nMGS-orthogonality: ";
+    out_str << "\nCGS-runtimes: ";
     for (int i = count_of_m_is_100; i < matrices_to_factorize.size(); ++i){
-        out_str << mgs_orth[i];
+        out_str << cgs_runtimes[i];
+        if (i + 1 != matrices_to_factorize.size()){
+            out_str << ", ";
+        }
+    }
+    out_str << "\nMGS-runtimes: ";
+    for (int i = count_of_m_is_100; i < matrices_to_factorize.size(); ++i){
+        out_str << mgs_runtimes[i];
         if (i + 1 != matrices_to_factorize.size()){
             out_str << ", ";
         }

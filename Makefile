@@ -45,7 +45,6 @@ clean:
 	mkdir $(APP_DIR)
 
 run:
-	rm -rf res/*
 	make all
 	./apps/$(EXECUTABLE)
 
