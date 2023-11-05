@@ -9,7 +9,7 @@
 
 #include "LLSSolver.h"
 
-class HouseholderSolver: LSSSolver{
+class HouseholderSolver: LLSSolver{
 public:
     Matrix* solve(Matrix* A, Matrix* b) override;
 };

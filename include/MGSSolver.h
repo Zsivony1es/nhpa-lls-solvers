@@ -7,7 +7,7 @@
 
 #include "LLSSolver.h"
 
-class MGSSolver : LSSSolver{
+class MGSSolver : LLSSolver{
 public:
     Matrix* solve(Matrix* A, Matrix* b) override;
 };

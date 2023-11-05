@@ -10,6 +10,7 @@
 class HouseholderFactorizer : QRFactorizer{
 public:
     Matrix* factorize(Matrix* A) override;
+
 };
 
 #endif //HOMEWORK1_HOUSEHOLDERFACTORIZER_H

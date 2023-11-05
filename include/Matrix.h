@@ -23,6 +23,7 @@ public:
 
     Matrix();
     Matrix(Matrix* M);
+    Matrix(const Matrix& other);
     Matrix(size_t rowcol_count);
     Matrix(size_t row_count, size_t col_count);
     Matrix(size_t row_count, size_t col_count, double init_val);
@@ -31,6 +32,7 @@ public:
     ~Matrix();
 
     void set_entries(double* new_entries);
+    void set_equal(Matrix* m);
     double evaluate_orthogonality() const;
     void initialize_identity(size_t N);
     void transpose();
