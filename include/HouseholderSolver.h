@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "LSSSolver.h"
+#include "LLSSolver.h"
 
 class HouseholderSolver: LSSSolver{
 public:

@@ -5,7 +5,7 @@
 #ifndef HOMEWORK1_CGSSOLVER_H
 #define HOMEWORK1_CGSSOLVER_H
 
-#include "LSSSolver.h"
+#include "LLSSolver.h"
 
 class CGSSolver : LSSSolver{
 public:

@@ -26,9 +26,7 @@ int householder_test(){
         if (expected_res[i] - m1->entries[i] > 1e-15){
             std::cerr << "Householder Orthogonalization was wrong!\nExpected matrix:\n" << exp->to_string() << "\nActual matrix:" << m1->to_string() << std::endl;
             std::cerr << "Q:\n" << Q->to_string() << "\n||Q^TQ - I||_1 = " << Q->evaluate_orthogonality() << std::endl;
-            Matrix* QR = new Matrix(3, 3);
-            cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 3, 3, 3, 1.0, Q->entries, 3, m1->entries, 3, 0, QR->entries, 3);
-            std::cerr << "QR:\n" << QR->to_string() << std::endl;
+
             return 1;
         }
     }
@@ -111,7 +109,7 @@ int main(){
 
     int errors = 0;
 
-    // errors += householder_test();
+    errors += householder_test();
     errors += cgs_mgs_test();
     // errors += givens_rot_test();
 

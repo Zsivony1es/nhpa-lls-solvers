@@ -5,7 +5,7 @@
 #ifndef HOMEWORK1_GIVENSSOLVER_H
 #define HOMEWORK1_GIVENSSOLVER_H
 
-#include "LSSSolver.h"
+#include "LLSSolver.h"
 
 class GivensSolver: LSSSolver{
 public:
